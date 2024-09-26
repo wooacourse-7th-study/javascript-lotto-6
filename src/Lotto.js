@@ -1,19 +1,24 @@
-import { MESSAGES } from "./constants";
+import { MESSAGES, LOTTO_NUMBER } from "./constants";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Lotto {
-  #numbers; // 클래스 외부에서 접근 불가
+  // 로또 구매 금액 유효성 검사
+  #isLottoPriceValidate(price) {
+    if (price % LOTTO_NUMBER.DIVISION_PRICE === 0) {
+      return false;
+    }
 
-  // 객체가 생성될 때 호출
-  constructor(numbers) {
-    this.#validate(numbers);
-    this.#numbers = numbers;
+    return true;
   }
 
-  // 유효성 검사
-  #validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error(MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
+  #getUserInputLottoPrice() {
+    const userInput = MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_PRICE);
+
+    if (this.#isLottoPriceValidate(userInput)) {
+      throw new Error(MESSAGES.INVALID_LOTTO_PRICE);
     }
+
+    return userInput;
   }
 }
 
