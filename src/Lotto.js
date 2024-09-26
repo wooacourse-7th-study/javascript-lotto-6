@@ -53,7 +53,7 @@ class Lotto {
       throw new Error(MESSAGES.DUPLICATE_LOTTO_NUMBER);
     }
 
-    return userInput;
+    return lottoNumbers;
   }
 }
 
