@@ -29,12 +29,13 @@ class Lotto {
 
   #getUserInputLottoPrice() {
     const userInput = MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_PRICE);
+    const price = Number(userInput);
 
-    if (this.#isLottoPriceValidate(userInput)) {
+    if (this.#isLottoPriceValidate(price)) {
       throw new Error(MESSAGES.INVALID_LOTTO_PRICE);
     }
 
-    return userInput;
+    return price;
   }
 
   #getUserInputLottoNumber() {
@@ -54,6 +55,17 @@ class Lotto {
     }
 
     return lottoNumbers;
+  }
+
+  #getUserInputBonusNumber() {
+    const userInput = MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_NUMBER);
+    const bonusNumber = Number(userInput);
+
+    if (LOTTO_NUMBER.MIN < bonusNumber || bonusNumber > LOTTO_NUMBER.MAX) {
+      throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
+    }
+
+    return bonusNumber;
   }
 }
 
