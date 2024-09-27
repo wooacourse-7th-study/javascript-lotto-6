@@ -10,6 +10,8 @@ class Lotto {
     "5B": 0,
     6: 0,
   };
+  #prizeMoney = 0;
+  #price = 0;
 
   // 로또 구매 금액 유효성 검사
   #isLottoPriceValidate(price) {
@@ -44,7 +46,7 @@ class Lotto {
       throw new Error(MESSAGES.INVALID_LOTTO_PRICE);
     }
 
-    return price;
+    this.#price = price;
   }
 
   async #getUserInputLottoNumber() {
@@ -94,14 +96,13 @@ class Lotto {
   }
 
   #getLottoResult(userInputLottoNumber, userInputBonusNumber) {
-    let prizeMoney = 0;
     for (numbers of this.#lottoNumbersStore) {
       const currentNumbers = numbers;
       const matchCount = userInputLottoNumber.filter((number) => currentNumbers.includes(number)).length;
 
       if (matchCount === 5 && numbers.includes(userInputBonusNumber)) {
         result["5B"]++;
-        prizeMoney += PRIZE_MONEY["5B"];
+        this.#prizeMoney += PRIZE_MONEY["5B"];
         continue;
       }
 
@@ -110,14 +111,28 @@ class Lotto {
       }
 
       this.#lottoResult[matchCount]++;
-      prizeMoney += PRIZE_MONEY[matchCount];
+      this.#prizeMoney += PRIZE_MONEY[matchCount];
     }
-
-    return { result: this.#lottoResult, prizeMoney };
   }
 
-  #getRevenueRate(price, prizeMoney) {
-    return (((prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
+  #getRevenueRate() {
+    return (((this.#prizeMoney - this.#price) / this.#price) * 100).toFixed(1).toLocaleString();
+  }
+
+  #printResult(result) {
+    MissionUtils.Console.print(MESSAGES.RESULT_LOTTO);
+
+    for (const [key, count] of Object.entries(result)) {
+      if (key === "5B") {
+        MissionUtils.Console.print(`5개 일치, 보너스 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
+        continue;
+      }
+
+      MissionUtils.Console.print(`${key}개 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
+    }
+
+    const revenueRate = this.#getRevenueRate();
+    MissionUtils.Console.print(MESSAGES.REVENUE_RATE(revenueRate));
   }
 }
 
