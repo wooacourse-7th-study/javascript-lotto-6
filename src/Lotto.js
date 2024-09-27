@@ -115,6 +115,10 @@ class Lotto {
 
     return { result: this.#lottoResult, prizeMoney };
   }
+
+  #getRevenueRate(price, prizeMoney) {
+    return (((prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
+  }
 }
 
 export default Lotto;
