@@ -72,6 +72,16 @@ class Lotto {
     const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX, 6);
     return [...lottoNumbers].sort((a, b) => b - a);
   }
+
+  #printLottoNumbers(price) {
+    const count = price / LOTTO_NUMBER.DIVISION_PRICE;
+    MissionUtils.Console.print(count + MESSAGES.BUY_LOTTO);
+
+    for (let i = 0; i < count; i++) {
+      const lottoNumbers = this.#generateLottoNumbers().join(", ");
+      MissionUtils.Console.print(lottoNumbers);
+    }
+  }
 }
 
 export default Lotto;
