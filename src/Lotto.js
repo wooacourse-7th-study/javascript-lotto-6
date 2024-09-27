@@ -1,7 +1,16 @@
-import { MESSAGES, LOTTO_NUMBER } from "./constants";
+import { MESSAGES, LOTTO_NUMBER, PRIZE_MONEY } from "./constants";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Lotto {
+  #lottoNumbersStore = [];
+  #lottoResult = {
+    3: 0,
+    4: 0,
+    5: 0,
+    "5B": 0,
+    6: 0,
+  };
+
   // 로또 구매 금액 유효성 검사
   #isLottoPriceValidate(price) {
     if (price % LOTTO_NUMBER.DIVISION_PRICE === 0) {
@@ -78,9 +87,33 @@ class Lotto {
     MissionUtils.Console.print(count + MESSAGES.BUY_LOTTO);
 
     for (let i = 0; i < count; i++) {
-      const lottoNumbers = this.#generateLottoNumbers().join(", ");
+      const lottoNumbers = this.#generateLottoNumbers();
       MissionUtils.Console.print(lottoNumbers);
+      this.#lottoNumbersStore.push(lottoNumbers);
     }
+  }
+
+  #getLottoResult(userInputLottoNumber, userInputBonusNumber) {
+    let prizeMoney = 0;
+    for (numbers of this.#lottoNumbersStore) {
+      const currentNumbers = numbers;
+      const matchCount = userInputLottoNumber.filter((number) => currentNumbers.includes(number)).length;
+
+      if (matchCount === 5 && numbers.includes(userInputBonusNumber)) {
+        result["5B"]++;
+        prizeMoney += PRIZE_MONEY["5B"];
+        continue;
+      }
+
+      if (this.#lottoResult[matchCount] === undefined) {
+        continue;
+      }
+
+      this.#lottoResult[matchCount]++;
+      prizeMoney += PRIZE_MONEY[matchCount];
+    }
+
+    return { result: this.#lottoResult, prizeMoney };
   }
 }
 

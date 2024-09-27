@@ -17,3 +17,11 @@ export const LOTTO_NUMBER = Object.freeze({
   LENGTH: 6,
   DIVISION_PRICE: 1000,
 });
+
+export const PRIZE_MONEY = Object.freeze({
+  3: 5000,
+  4: 50000,
+  5: 1500000,
+  "5B": 30000000,
+  6: 2000000000,
+});
