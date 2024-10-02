@@ -29,8 +29,8 @@ class Lotto {
     return true;
   }
 
-  #isLottoNumberValidate(numbers) {
-    return numbers.some((number) => LOTTO_NUMBER.MIN > number || number > LOTTO_NUMBER.MAX);
+  #isLottoNumberValidate(number) {
+    return LOTTO_NUMBER.MIN > number || number > LOTTO_NUMBER.MAX;
   }
 
   #isDuplicateLottoNumberValidate(numbers) {
@@ -56,7 +56,7 @@ class Lotto {
       throw new Error(MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
     }
 
-    if (this.#isLottoNumberValidate(userLottoNumbers)) {
+    if (userLottoNumbers.some((number) => this.#isLottoNumberValidate(number))) {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
     }
 
@@ -71,7 +71,7 @@ class Lotto {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_BONUS_NUMBER);
     const bonusNumber = Number(userInput);
 
-    if (LOTTO_NUMBER.MIN < bonusNumber || bonusNumber > LOTTO_NUMBER.MAX) {
+    if (this.#isLottoNumberValidate(bonusNumber)) {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
     }
 
