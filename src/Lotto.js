@@ -131,11 +131,11 @@ class Lotto {
 
     for (const [key, count] of result) {
       if (key === "5B") {
-        MissionUtils.Console.print(`5개 일치, 보너스 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
+        MissionUtils.Console.print(`5개 일치, 보너스 일치 (${PRIZE_MONEY[key].toLocaleString()}원)- ${count}개`);
         continue;
       }
 
-      MissionUtils.Console.print(`${key}개 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
+      MissionUtils.Console.print(`${key}개 일치 (${PRIZE_MONEY[key].toLocaleString()}원)- ${count}개`);
     }
 
     const revenueRate = this.#getRevenueRate(price, prizeMoney);
