@@ -40,7 +40,7 @@ class Lotto {
     return new Set(numbers).size !== LOTTO_NUMBER.LENGTH;
   }
 
-  async #getUserInputLottoPrice() {
+  async getUserInputLottoPrice() {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_PRICE);
     const price = Number(userInput);
 
