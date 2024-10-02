@@ -11,9 +11,6 @@ class Lotto {
     6: 0,
   };
   #prizeMoney = 0;
-  #price = 0;
-  #userLottoNumbers;
-  #userBonusNumber;
 
   // 로또 구매 금액 유효성 검사
   #isLottoPriceValidate(price) {
@@ -48,26 +45,26 @@ class Lotto {
       throw new Error(MESSAGES.INVALID_LOTTO_PRICE);
     }
 
-    this.#price = price;
+    return price;
   }
 
   async getUserInputLottoNumber() {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_NUMBER);
-    const lottoNumbers = userInput.split(",").map((number) => Number(number));
+    const userLottoNumbers = userInput.split(",").map((number) => Number(number));
 
-    if (this.#isLottoNumberLengthValidate(lottoNumbers)) {
+    if (this.#isLottoNumberLengthValidate(userLottoNumbers)) {
       throw new Error(MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
     }
 
-    if (this.#isLottoNumberValidate(lottoNumbers)) {
+    if (this.#isLottoNumberValidate(userLottoNumbers)) {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
     }
 
-    if (this.#isDuplicateLottoNumberValidate(lottoNumbers)) {
+    if (this.#isDuplicateLottoNumberValidate(userLottoNumbers)) {
       throw new Error(MESSAGES.DUPLICATE_LOTTO_NUMBER);
     }
 
-    this.#userLottoNumbers = lottoNumbers;
+    return userLottoNumbers;
   }
 
   async getUserInputBonusNumber() {
@@ -78,7 +75,7 @@ class Lotto {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
     }
 
-    this.#userBonusNumber = bonusNumber;
+    return bonusNumber;
   }
 
   #generateLottoNumbers() {
@@ -97,12 +94,12 @@ class Lotto {
     }
   }
 
-  calculateLottoResult() {
+  getLottoResult(userLottoNumbers, userBonusNumber) {
     for (numbers of this.#lottoNumbersStore) {
       const currentNumbers = numbers;
-      const matchCount = this.#userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
+      const matchCount = userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
 
-      if (matchCount === 5 && numbers.includes(this.#userBonusNumber)) {
+      if (matchCount === 5 && numbers.includes(userBonusNumber)) {
         result["5B"]++;
         this.#prizeMoney += PRIZE_MONEY["5B"];
         continue;
@@ -115,10 +112,12 @@ class Lotto {
       this.#lottoResult[matchCount]++;
       this.#prizeMoney += PRIZE_MONEY[matchCount];
     }
+
+    return { result: this.#lottoResult, prizeMoney: this.#prizeMoney };
   }
 
-  #getRevenueRate() {
-    return (((this.#prizeMoney - this.#price) / this.#price) * 100).toFixed(1).toLocaleString();
+  #getRevenueRate(price) {
+    return (((this.#prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
   }
 
   printResult(result) {
