@@ -49,7 +49,7 @@ class Lotto {
     this.#price = price;
   }
 
-  async #getUserInputLottoNumber() {
+  async getUserInputLottoNumber() {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_NUMBER);
     const lottoNumbers = userInput.split(",").map((number) => Number(number));
 
@@ -68,7 +68,7 @@ class Lotto {
     return lottoNumbers;
   }
 
-  async #getUserInputBonusNumber() {
+  async getUserInputBonusNumber() {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_NUMBER);
     const bonusNumber = Number(userInput);
 
@@ -84,7 +84,7 @@ class Lotto {
     return [...lottoNumbers].sort((a, b) => b - a);
   }
 
-  #printLottoNumbers(price) {
+  printLottoNumbers(price) {
     const count = price / LOTTO_NUMBER.DIVISION_PRICE;
     MissionUtils.Console.print(count + MESSAGES.BUY_LOTTO);
 
@@ -119,7 +119,7 @@ class Lotto {
     return (((this.#prizeMoney - this.#price) / this.#price) * 100).toFixed(1).toLocaleString();
   }
 
-  #printResult(result) {
+  printResult(result) {
     MissionUtils.Console.print(MESSAGES.RESULT_LOTTO);
 
     for (const [key, count] of Object.entries(result)) {
