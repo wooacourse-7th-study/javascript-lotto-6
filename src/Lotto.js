@@ -123,7 +123,8 @@ class Lotto {
   }
 
   #getRevenueRate(price, prizeMoney) {
-    return (((prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
+    const rate = ((prizeMoney - price) / price) * 100;
+    return parseFloat(rate.toFixed(1)).toLocaleString();
   }
 
   printResult(result, price, prizeMoney) {
