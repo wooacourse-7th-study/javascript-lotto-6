@@ -1,4 +1,4 @@
-import { MESSAGES, LOTTO_NUMBER, PRIZE_MONEY } from "./constants";
+import { MESSAGES, LOTTO_NUMBER, PRIZE_MONEY } from "./constants/index.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Lotto {
