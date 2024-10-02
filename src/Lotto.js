@@ -12,6 +12,8 @@ class Lotto {
   };
   #prizeMoney = 0;
   #price = 0;
+  #userLottoNumbers;
+  #userBonusNumber;
 
   // 로또 구매 금액 유효성 검사
   #isLottoPriceValidate(price) {
@@ -65,7 +67,7 @@ class Lotto {
       throw new Error(MESSAGES.DUPLICATE_LOTTO_NUMBER);
     }
 
-    return lottoNumbers;
+    this.#userLottoNumbers = lottoNumbers;
   }
 
   async getUserInputBonusNumber() {
@@ -76,7 +78,7 @@ class Lotto {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
     }
 
-    return bonusNumber;
+    this.#userBonusNumber = bonusNumber;
   }
 
   #generateLottoNumbers() {
