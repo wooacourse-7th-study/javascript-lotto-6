@@ -12,7 +12,7 @@ class Lotto {
     [6, 0],
   ]);
 
-  // 로또 구매 금액 유효성 검사
+  // 유효성 검사
   #isLottoPriceValidate(price) {
     if (price % LOTTO_NUMBER.DIVISION_PRICE === 0) {
       return false;
@@ -37,6 +37,7 @@ class Lotto {
     return new Set(numbers).size !== LOTTO_NUMBER.LENGTH;
   }
 
+  // 사용자 입력
   async getUserInputLottoPrice() {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_PRICE);
     const price = Number(userInput);
@@ -78,6 +79,7 @@ class Lotto {
     return bonusNumber;
   }
 
+  // 로또 번호 생성, 리턴, 출력
   #generateLottoNumbers() {
     const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX, 6);
     return [...lottoNumbers].sort((a, b) => a - b);
@@ -101,6 +103,7 @@ class Lotto {
     });
   }
 
+  // 로또 결과 처리, 수익률 구하기, 출력
   getLottoResult(userLottoNumbers, userBonusNumber, lottoNumbersStore) {
     for (const currentNumbers of lottoNumbersStore) {
       const matchCount = userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
