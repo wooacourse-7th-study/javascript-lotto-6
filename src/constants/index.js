@@ -5,9 +5,9 @@ export const MESSAGES = Object.freeze({
   INVALID_LOTTO_NUMBER: "[ERROR] 1부터 45까지의 숫자만 입력 가능합니다.",
   INPUT_LOTTO_PRICE: "구입금액을 입력해 주세요.\n",
   BUY_LOTTO: "개를 구매했습니다.",
-  INPUT_LOTTO_NUMBER: "당첨 번호를 입력해 주세요.\n",
-  INPUT_BONUS_NUMBER: "보너스 번호을 입력해 주세요.\n",
-  RESULT_LOTTO: "당첨 통계\n---",
+  INPUT_LOTTO_NUMBER: "\n당첨 번호를 입력해 주세요.\n",
+  INPUT_BONUS_NUMBER: "\n보너스 번호을 입력해 주세요.\n",
+  RESULT_LOTTO: "\n당첨 통계\n---",
   REVENUE_RATE: (revenueRate) => `총 수익률은 ${revenueRate}%입니다.`,
 });
 

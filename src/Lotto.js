@@ -85,7 +85,7 @@ class Lotto {
 
   getLottoNumbers(price) {
     const count = price / LOTTO_NUMBER.DIVISION_PRICE;
-    MissionUtils.Console.print(count + MESSAGES.BUY_LOTTO);
+    MissionUtils.Console.print("\n" + count + MESSAGES.BUY_LOTTO);
 
     for (let i = 0; i < count; i++) {
       const lottoNumbers = this.#generateLottoNumbers();
