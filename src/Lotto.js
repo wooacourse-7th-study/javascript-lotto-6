@@ -68,7 +68,7 @@ class Lotto {
   }
 
   async getUserInputBonusNumber() {
-    const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_LOTTO_NUMBER);
+    const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_BONUS_NUMBER);
     const bonusNumber = Number(userInput);
 
     if (LOTTO_NUMBER.MIN < bonusNumber || bonusNumber > LOTTO_NUMBER.MAX) {
