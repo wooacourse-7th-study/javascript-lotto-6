@@ -83,15 +83,22 @@ class Lotto {
     return [...lottoNumbers].sort((a, b) => a - b);
   }
 
-  printLottoNumbers(price) {
+  getLottoNumbers(price) {
     const count = price / LOTTO_NUMBER.DIVISION_PRICE;
     MissionUtils.Console.print(count + MESSAGES.BUY_LOTTO);
 
     for (let i = 0; i < count; i++) {
       const lottoNumbers = this.#generateLottoNumbers();
-      MissionUtils.Console.print(lottoNumbers);
       this.#lottoNumbersStore.push(lottoNumbers);
     }
+
+    return this.#lottoNumbersStore;
+  }
+
+  printLottoNumbers(lottoNumbersStore) {
+    lottoNumbersStore.forEach((numbers) => {
+      MissionUtils.Console.print(`[${numbers.join(", ")}]`);
+    });
   }
 
   getLottoResult(userLottoNumbers, userBonusNumber) {
