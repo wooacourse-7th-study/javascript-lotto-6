@@ -101,9 +101,8 @@ class Lotto {
     });
   }
 
-  getLottoResult(userLottoNumbers, userBonusNumber) {
-    for (numbers of this.#lottoNumbersStore) {
-      const currentNumbers = numbers;
+  getLottoResult(userLottoNumbers, userBonusNumber, lottoNumbersStore) {
+    for (currentNumbers of lottoNumbersStore) {
       const matchCount = userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
 
       if (matchCount === 5 && numbers.includes(userBonusNumber)) {
@@ -123,11 +122,11 @@ class Lotto {
     return { result: this.#lottoResult, prizeMoney: this.#prizeMoney };
   }
 
-  #getRevenueRate(price) {
-    return (((this.#prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
+  #getRevenueRate(price, prizeMoney) {
+    return (((prizeMoney - price) / price) * 100).toFixed(1).toLocaleString();
   }
 
-  printResult(result) {
+  printResult(result, price, prizeMoney) {
     MissionUtils.Console.print(MESSAGES.RESULT_LOTTO);
 
     for (const [key, count] of Object.entries(result)) {
@@ -139,7 +138,7 @@ class Lotto {
       MissionUtils.Console.print(`${key}개 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
     }
 
-    const revenueRate = this.#getRevenueRate();
+    const revenueRate = this.#getRevenueRate(price, prizeMoney);
     MissionUtils.Console.print(MESSAGES.REVENUE_RATE(revenueRate));
   }
 }
