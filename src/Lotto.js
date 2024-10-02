@@ -102,7 +102,7 @@ class Lotto {
   }
 
   getLottoResult(userLottoNumbers, userBonusNumber, lottoNumbersStore) {
-    for (currentNumbers of lottoNumbersStore) {
+    for (const currentNumbers of lottoNumbersStore) {
       const matchCount = userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
 
       if (matchCount === 5 && numbers.includes(userBonusNumber)) {
