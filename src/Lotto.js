@@ -3,14 +3,14 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Lotto {
   #lottoNumbersStore = [];
-  #lottoResult = {
-    3: 0,
-    4: 0,
-    5: 0,
-    "5B": 0,
-    6: 0,
-  };
   #prizeMoney = 0;
+  #lottoResult = new Map([
+    [3, 0],
+    [4, 0],
+    [5, 0],
+    ["5B", 0],
+    [6, 0],
+  ]);
 
   // 로또 구매 금액 유효성 검사
   #isLottoPriceValidate(price) {
@@ -105,17 +105,17 @@ class Lotto {
     for (const currentNumbers of lottoNumbersStore) {
       const matchCount = userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
 
+      if (!this.#lottoResult.has(matchCount)) {
+        continue;
+      }
+
       if (matchCount === 5 && numbers.includes(userBonusNumber)) {
-        result["5B"]++;
+        this.#lottoResult.set("5B", this.#lottoResult.get("5B") + 1);
         this.#prizeMoney += PRIZE_MONEY["5B"];
         continue;
       }
 
-      if (this.#lottoResult[matchCount] === undefined) {
-        continue;
-      }
-
-      this.#lottoResult[matchCount]++;
+      this.#lottoResult.set(matchCount, this.#lottoResult.get(matchCount) + 1);
       this.#prizeMoney += PRIZE_MONEY[matchCount];
     }
 
@@ -129,7 +129,7 @@ class Lotto {
   printResult(result, price, prizeMoney) {
     MissionUtils.Console.print(MESSAGES.RESULT_LOTTO);
 
-    for (const [key, count] of Object.entries(result)) {
+    for (const [key, count] of result) {
       if (key === "5B") {
         MissionUtils.Console.print(`5개 일치, 보너스 일치 (${PRIZE_MONEY[key]}원)- ${count}개`);
         continue;
