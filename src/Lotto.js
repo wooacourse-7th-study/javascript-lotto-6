@@ -80,7 +80,7 @@ class Lotto {
 
   #generateLottoNumbers() {
     const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX, 6);
-    return [...lottoNumbers].sort((a, b) => b - a);
+    return [...lottoNumbers].sort((a, b) => a - b);
   }
 
   printLottoNumbers(price) {
