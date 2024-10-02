@@ -97,12 +97,12 @@ class Lotto {
     }
   }
 
-  #getLottoResult(userInputLottoNumber, userInputBonusNumber) {
+  calculateLottoResult() {
     for (numbers of this.#lottoNumbersStore) {
       const currentNumbers = numbers;
-      const matchCount = userInputLottoNumber.filter((number) => currentNumbers.includes(number)).length;
+      const matchCount = this.#userLottoNumbers.filter((number) => currentNumbers.includes(number)).length;
 
-      if (matchCount === 5 && numbers.includes(userInputBonusNumber)) {
+      if (matchCount === 5 && numbers.includes(this.#userBonusNumber)) {
         result["5B"]++;
         this.#prizeMoney += PRIZE_MONEY["5B"];
         continue;
