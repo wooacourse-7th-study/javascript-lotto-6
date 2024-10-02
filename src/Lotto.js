@@ -109,7 +109,7 @@ class Lotto {
         continue;
       }
 
-      if (matchCount === 5 && numbers.includes(userBonusNumber)) {
+      if (matchCount === 5 && currentNumbers.includes(userBonusNumber)) {
         this.#lottoResult.set("5B", this.#lottoResult.get("5B") + 1);
         this.#prizeMoney += PRIZE_MONEY["5B"];
         continue;
