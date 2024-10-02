@@ -30,7 +30,7 @@ class Lotto {
   }
 
   #isLottoNumberValidate(numbers) {
-    return numbers.some((number) => LOTTO_NUMBER.MIN < number || number > LOTTO_NUMBER.MAX);
+    return numbers.some((number) => LOTTO_NUMBER.MIN > number || number > LOTTO_NUMBER.MAX);
   }
 
   #isDuplicateLottoNumberValidate(numbers) {
