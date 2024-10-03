@@ -1,5 +1,5 @@
 import Lotto from "../src/Lotto.js";
-import { MESSAGES } from "../src/constants/lotto.js";
+import { LOTTO_MESSAGES } from "../src/constants/lotto.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockInputs = (input) => {
@@ -25,7 +25,7 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputLottoPrice()).rejects.toThrow(MESSAGES.INVALID_LOTTO_PRICE);
+    await expect(lotto.getUserInputLottoPrice()).rejects.toThrow(LOTTO_MESSAGES.INVALID_LOTTO_PRICE);
   });
 
   // 로또 번호
@@ -38,7 +38,7 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
+    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(LOTTO_MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
   });
 
   test("로또 번호 범위 검사", async () => {
@@ -50,7 +50,7 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(MESSAGES.INVALID_LOTTO_NUMBER);
+    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
   });
 
   test("로또 번호 중복 검사", async () => {
@@ -62,7 +62,7 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(MESSAGES.DUPLICATE_LOTTO_NUMBER);
+    await expect(lotto.getUserInputLottoNumber()).rejects.toThrow(LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER);
   });
 
   // 보너스 번호
@@ -75,7 +75,7 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputBonusNumber()).rejects.toThrow(MESSAGES.INVALID_LOTTO_NUMBER);
+    await expect(lotto.getUserInputBonusNumber()).rejects.toThrow(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
   });
 
   test("로또 번호 중복 검사", async () => {
@@ -88,7 +88,9 @@ describe("유저 인풋 테스트(유효성 검사)", () => {
     const lotto = new Lotto();
 
     // then
-    await expect(lotto.getUserInputBonusNumber(userLottoNumbers)).rejects.toThrow(MESSAGES.DUPLICATE_LOTTO_NUMBER);
+    await expect(lotto.getUserInputBonusNumber(userLottoNumbers)).rejects.toThrow(
+      LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER
+    );
   });
 });
 

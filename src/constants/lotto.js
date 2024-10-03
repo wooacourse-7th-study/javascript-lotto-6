@@ -1,4 +1,4 @@
-export const MESSAGES = Object.freeze({
+export const LOTTO_MESSAGES = Object.freeze({
   INVALID_LOTTO_PRICE: "[ERROR] 로또 가격은 1000원 단위로 입력해 주세요.",
   SIX_LENGTH_LOTTO_NUMBER: "[ERROR] 쉼표를 기준으로 6개의 숫자만 입력 가능합니다.",
   DUPLICATE_LOTTO_NUMBER: "[ERROR] 중복된 숫자가 있습니다.",
@@ -18,7 +18,7 @@ export const LOTTO_NUMBER = Object.freeze({
   DIVISION_PRICE: 1000,
 });
 
-export const PRIZE_MONEY = Object.freeze({
+export const LOTTO_PRIZE_MONEY = Object.freeze({
   3: 5000,
   4: 50000,
   5: 1500000,
