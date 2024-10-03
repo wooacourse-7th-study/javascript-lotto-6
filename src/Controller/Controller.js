@@ -8,8 +8,6 @@ import WinTicket from "../Model/WinTicket.js";
 
 /** 로또 게임의 Controller입니다. */
 class Controller {
-  #purchaseMoney;
-
   constructor() {
     this.input = new Input();
     this.output = new Output();
@@ -18,8 +16,8 @@ class Controller {
   /** 로또 구입 금액을 입력하고 로또 개수와 각 로또의 번호를 출력합니다. */
   async buyLotto() {
     try {
-      this.#purchaseMoney = await this.input.inputMoney();
-      this.ticket = new Ticket(this.#purchaseMoney);
+      const purchaseMoney = await this.input.inputMoney();
+      this.ticket = new Ticket(purchaseMoney);
       this.output.outputTicketAmount(this.ticket.getAmount());
       this.output.outputTickets(this.ticket.getTickets());
     } catch (error) {
@@ -46,7 +44,7 @@ class Controller {
     const tickets = this.ticket.getTickets();
     const winningNums = this.lotto.getWinningNumbers();
     const bonusNum = this.bonusNumber.getBonusNumber();
-    const winTicket = new WinTicket(tickets, winningNums, bonusNum, this.#purchaseMoney);
+    const winTicket = new WinTicket(tickets, winningNums, bonusNum);
     this.output.printResult(winTicket.getUserRank(), winTicket.getProfitRate());
   }
 }

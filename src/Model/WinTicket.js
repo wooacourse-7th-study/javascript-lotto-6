@@ -1,4 +1,4 @@
-import { RANK } from "../constants/rules.js";
+import { LOTTO, RANK } from "../constants/rules.js";
 
 /** 당첨 정보를 관리하는 Model입니다. */
 class WinTicket {
@@ -12,11 +12,12 @@ class WinTicket {
    * @param {number} bonusNum
    * @param {number} purchaseMoney
    */
-  constructor(tickets, winningNums, bonusNum, purchaseMoney) {
+  constructor(tickets, winningNums, bonusNum) {
     for (let ticket of tickets) {
       const rank = this.#calculateMatch(ticket, winningNums, bonusNum);
       if (rank) this.#userRank[rank]++;
     }
+    const purchaseMoney = tickets.length * LOTTO.TICKET_PRICE;
     this.#profitRate = this.#calculateProfit(purchaseMoney, this.#userRank);
   }
 
