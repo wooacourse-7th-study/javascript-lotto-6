@@ -1,4 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { LOTTO } from "../constants/rules.js";
 
 class Ticket {
   #amount;
@@ -14,15 +15,20 @@ class Ticket {
 
   #validMoneyInput(input) {
     if (isNaN(input)) throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
-    if (input % 1000 !== 0) throw new Error("[ERROR] 1,000원 단위로만 입력 가능합니다.");
+    if (input % LOTTO.PURCHASE_UNIT !== 0)
+      throw new Error(`[ERROR] ${LOTTO.PURCHASE_UNIT}원 단위로만 입력 가능합니다.`);
   }
 
   #calculateAmount(money) {
-    this.#amount = Math.floor(money / 1000);
+    this.#amount = Math.floor(money / LOTTO.TICKET_PRICE);
   }
 
   #buyOneTicket() {
-    const nums = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const nums = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUM,
+      LOTTO.MAX_NUM,
+      LOTTO.NUM_COUNT
+    );
     nums.sort((a, b) => a - b);
     this.#tickets.push(nums);
   }

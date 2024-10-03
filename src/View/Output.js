@@ -1,4 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { RANK } from "../constants/rules.js";
 
 class Output {
   outputTicketAmount(amount) {
@@ -12,13 +13,12 @@ class Output {
   }
 
   printResult(resultArr) {
-    MissionUtils.Console.print(`\n당첨 통계
----
-3개 일치 (5,000원) - ${resultArr[5]}개
-4개 일치 (50,000원) - ${resultArr[4]}개
-5개 일치 (1,500,000원) - ${resultArr[3]}개
-5개 일치, 보너스 볼 일치 (30,000,000원) - ${resultArr[2]}개
-6개 일치 (2,000,000,000원) - ${resultArr[1]}개`);
+    MissionUtils.Console.print("\n당첨 통계\n---");
+    for (let rank = 5; rank > 0; rank -= 1) {
+      const COUNT = resultArr[rank];
+      const RANK_STRING = RANK[rank].STRING;
+      MissionUtils.Console.print(RANK_STRING + " - " + COUNT + "개");
+    }
   }
 }
 
