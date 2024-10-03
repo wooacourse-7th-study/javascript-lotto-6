@@ -1,5 +1,5 @@
 import Lotto from "../src/Lotto.js";
-import { MESSAGES } from "../src/constants/index.js";
+import { MESSAGES } from "../src/constants/lotto.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const mockInputs = (input) => {
