@@ -4,8 +4,10 @@ import Input from "../View/Input.js";
 import Output from "../View/Output.js";
 import Lotto from "../Model/Lotto.js";
 import BonusNumber from "../Model/BonusNumber.js";
+import { RANK } from "../constants/rules.js";
 
 class Controller {
+  #purchaseMoney;
   #userRank = Array.from({ length: 6 }, () => 0);
 
   constructor() {
@@ -15,8 +17,8 @@ class Controller {
 
   async buyLotto() {
     try {
-      const purchaseMoney = await this.input.inputMoney();
-      this.ticket = new Ticket(purchaseMoney);
+      this.#purchaseMoney = await this.input.inputMoney();
+      this.ticket = new Ticket(this.#purchaseMoney);
       this.output.outputTicketAmount(this.ticket.getAmount());
       this.output.outputTickets(this.ticket.getTickets());
     } catch (error) {
@@ -45,7 +47,8 @@ class Controller {
       const rank = this.#calculateMatch(ticket, winningNums, bonusNum);
       if (rank) this.#userRank[rank]++;
     }
-    this.output.printResult(this.#userRank);
+    const profitRate = this.#calculateProfit(this.#purchaseMoney, this.#userRank);
+    this.output.printResult(this.#userRank, profitRate);
   }
 
   #calculateMatch(ticket, winningNums, bonusNum) {
@@ -54,6 +57,14 @@ class Controller {
     else if (matchNums.length === 6) return 1;
     else if (matchNums.length === 5 && ticket.includes(bonusNum)) return 2;
     else return 8 - matchNums.length;
+  }
+
+  #calculateProfit(purchase, userRank) {
+    let winMoney = 0;
+    for (let i = 1; i < userRank.length; i++) {
+      winMoney += userRank[i] * RANK[i].PRICE;
+    }
+    return Math.round((winMoney / purchase) * 1000) / 10;
   }
 }
 

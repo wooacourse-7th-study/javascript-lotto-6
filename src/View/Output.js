@@ -13,13 +13,14 @@ class Output {
     }
   }
 
-  printResult(resultArr) {
+  printResult(resultArr, profitRate) {
     MissionUtils.Console.print(OUTPUT_MESSAGES.RESULT_STATEMENT);
     for (let rank = 5; rank > 0; rank -= 1) {
       const COUNT = resultArr[rank];
       const RANK_STRING = RANK[rank].STRING;
       MissionUtils.Console.print(RANK_STRING + " - " + COUNT + "개");
     }
+    MissionUtils.Console.print(OUTPUT_MESSAGES.PROFIT_RATE(profitRate));
   }
 }
 

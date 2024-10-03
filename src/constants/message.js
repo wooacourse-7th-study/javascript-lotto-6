@@ -7,6 +7,7 @@ export const INPUT_MESSAGES = Object.freeze({
 export const OUTPUT_MESSAGES = Object.freeze({
   PURCHASE: (amount) => `\n${amount}개를 구매했습니다.`,
   RESULT_STATEMENT: "\n당첨 통계\n---",
+  PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
 
 export const ERROR_MESSAGES = Object.freeze({
