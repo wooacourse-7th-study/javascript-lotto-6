@@ -1,15 +1,18 @@
+/** 입력값을 받을 때 필요한 문구입니다. */
 export const INPUT_MESSAGES = Object.freeze({
   PURCHASE_MONEY: "구입금액을 입력해 주세요.\n",
   WINNING_NUM: "\n당첨 번호를 입력해 주세요.\n",
   BONUS_NUM: "\n보너스 번호를 입력해 주세요.\n",
 });
 
+/** 출력되는 데 필요한 문구입니다. */
 export const OUTPUT_MESSAGES = Object.freeze({
   PURCHASE: (amount) => `\n${amount}개를 구매했습니다.`,
   RESULT_STATEMENT: "\n당첨 통계\n---",
   PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
 
+/** 에러 메시지를 담을 때 필요한 문구입니다. */
 export const ERROR_MESSAGES = Object.freeze({
   ONLY_NUMBER: "[ERROR] 숫자만 입력할 수 있습니다.",
   DUPLICATE: "[ERROR] 로또 번호는 중복될 수 없습니다.",

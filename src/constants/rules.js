@@ -1,3 +1,4 @@
+/** 로또 게임의 룰과 관련된 상수들입니다. */
 export const LOTTO = Object.freeze({
   NUM_COUNT: 6,
   MIN_NUM: 1,
@@ -6,6 +7,7 @@ export const LOTTO = Object.freeze({
   PURCHASE_UNIT: 1000,
 });
 
+/** 로또 게임의 당첨 등수별 출력 메시지와 가격을 담은 객체입니다. */
 export const RANK = Object.freeze({
   1: { STRING: "6개 일치 (2,000,000,000원)", PRICE: 2000000000 },
   2: { STRING: "5개 일치, 보너스 볼 일치 (30,000,000원)", PRICE: 30000000 },

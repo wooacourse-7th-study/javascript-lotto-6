@@ -6,6 +6,7 @@ import Lotto from "../Model/Lotto.js";
 import BonusNumber from "../Model/BonusNumber.js";
 import WinTicket from "../Model/WinTicket.js";
 
+/** 로또 게임의 Controller입니다. */
 class Controller {
   #purchaseMoney;
 
@@ -14,6 +15,7 @@ class Controller {
     this.output = new Output();
   }
 
+  /** 로또 구입 금액을 입력하고 로또 개수와 각 로또의 번호를 출력합니다. */
   async buyLotto() {
     try {
       this.#purchaseMoney = await this.input.inputMoney();
@@ -26,6 +28,7 @@ class Controller {
     }
   }
 
+  /** 당첨 번호와 보너스 번호를 입력받습니다. */
   async inputWinningNum() {
     try {
       const winningNums = await this.input.inputWinningNums();
@@ -38,6 +41,7 @@ class Controller {
     }
   }
 
+  /** 당첨 결과와 수익률을 계산하고 출력합니다. */
   result() {
     const tickets = this.ticket.getTickets();
     const winningNums = this.lotto.getWinningNumbers();
