@@ -1,4 +1,6 @@
-import Lotto from "../src/Lotto.js";
+import { ERROR_MESSAGES } from "../src/constants/message.js";
+import { LOTTO } from "../src/constants/rules.js";
+import Lotto from "../src/Model/Lotto.js";
 
 describe("로또 클래스 테스트", () => {
   test("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.", () => {
@@ -15,4 +17,24 @@ describe("로또 클래스 테스트", () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test("로또 번호에 숫자가 아닌 입력값이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto(["1", "2", "3", "4", "5", "hi"]);
+    }).toThrow(ERROR_MESSAGES.ONLY_NUMBER);
+  });
+
+  test("공백이 있으면 예외가 발생한다.", () => {
+    expect(() => {
+      new Lotto(["1", "2", "3", "4", "5", "   "]);
+    }).toThrow(ERROR_MESSAGES.BLANK);
+  });
+
+  test.each([[["1", "2", "3", "4", "5", "49"]], [["0", "3", "5", "7", "9", "12"]]])(
+    "로또 번호 범위를 넘어가면 예외가 발생한다.",
+    (numbers) => {
+      expect(() => {
+        new Lotto(numbers);
+      }).toThrow(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+    }
+  );
 });
