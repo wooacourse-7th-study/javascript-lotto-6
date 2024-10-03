@@ -20,6 +20,16 @@ class Input {
       this.inputWinningNums();
     }
   }
+
+  async inputBonusNum() {
+    try {
+      const input = await MissionUtils.Console.readLineAsync("\n보너스 번호를 입력해 주세요.\n");
+      return input;
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      this.inputWinningNums();
+    }
+  }
 }
 
 export default Input;

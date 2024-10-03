@@ -3,6 +3,7 @@ import Ticket from "../Model/Ticket.js";
 import Input from "../View/Input.js";
 import Output from "../View/Output.js";
 import Lotto from "../Model/Lotto.js";
+import BonusNumber from "../Model/BonusNumber.js";
 
 class Controller {
   constructor() {
@@ -26,6 +27,8 @@ class Controller {
     try {
       const winningNums = await this.input.inputWinningNums();
       this.lotto = new Lotto(winningNums);
+      const bonusNum = await this.input.inputBonusNum();
+      this.bonusNumber = new BonusNumber(bonusNum, this.lotto.getWinningNumbers());
     } catch (error) {
       MissionUtils.Console.print(error.message);
       await this.inputWinningNum();
