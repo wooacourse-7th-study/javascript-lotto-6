@@ -6,6 +6,8 @@ import Lotto from "../Model/Lotto.js";
 import BonusNumber from "../Model/BonusNumber.js";
 
 class Controller {
+  #userRank = Array.from({ length: 6 }, () => 0);
+
   constructor() {
     this.input = new Input();
     this.output = new Output();
@@ -33,6 +35,25 @@ class Controller {
       MissionUtils.Console.print(error.message);
       await this.inputWinningNum();
     }
+  }
+
+  result() {
+    const tickets = this.ticket.getTickets();
+    const winningNums = this.lotto.getWinningNumbers();
+    const bonusNum = this.bonusNumber.getBonusNumber();
+    for (let ticket of tickets) {
+      const rank = this.#calculateMatch(ticket, winningNums, bonusNum);
+      if (rank) this.#userRank[rank]++;
+    }
+    this.output.printResult(this.#userRank);
+  }
+
+  #calculateMatch(ticket, winningNums, bonusNum) {
+    const matchNums = ticket.filter((num) => winningNums.includes(num));
+    if (matchNums.length < 3) return;
+    else if (matchNums.length === 6) return 1;
+    else if (matchNums.length === 5 && ticket.includes(bonusNum)) return 2;
+    else return 8 - matchNums.length;
   }
 }
 
