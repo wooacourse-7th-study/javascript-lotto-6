@@ -2,6 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import Ticket from "../Model/Ticket.js";
 import Input from "../View/Input.js";
 import Output from "../View/Output.js";
+import Lotto from "../Model/Lotto.js";
 
 class Controller {
   constructor() {
@@ -18,6 +19,16 @@ class Controller {
     } catch (error) {
       MissionUtils.Console.print(error.message);
       await this.buyLotto();
+    }
+  }
+
+  async inputWinningNum() {
+    try {
+      const winningNums = await this.input.inputWinningNums();
+      this.lotto = new Lotto(winningNums);
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      await this.inputWinningNum();
     }
   }
 }

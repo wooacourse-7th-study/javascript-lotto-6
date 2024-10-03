@@ -10,6 +10,16 @@ class Input {
       this.inputMoney();
     }
   }
+
+  async inputWinningNums() {
+    try {
+      const input = await MissionUtils.Console.readLineAsync("\n당첨 번호를 입력해 주세요.\n");
+      return input.split(",");
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      this.inputWinningNums();
+    }
+  }
 }
 
 export default Input;
