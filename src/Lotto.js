@@ -122,7 +122,7 @@ class Lotto {
       this.#prizeMoney += PRIZE_MONEY[matchCount];
     }
 
-    return { result: this.#lottoResult, prizeMoney: this.#prizeMoney };
+    return { result: [...this.#lottoResult], prizeMoney: this.#prizeMoney };
   }
 
   #getRevenueRate(price, prizeMoney) {
