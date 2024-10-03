@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { LOTTO } from "../constants/rules.js";
+import { ERROR_MESSAGES } from "../constants/message.js";
 
 class Ticket {
   #amount;
@@ -14,9 +15,9 @@ class Ticket {
   }
 
   #validMoneyInput(input) {
-    if (isNaN(input)) throw new Error("[ERROR] 숫자만 입력할 수 있습니다.");
+    if (isNaN(input)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
     if (input % LOTTO.PURCHASE_UNIT !== 0)
-      throw new Error(`[ERROR] ${LOTTO.PURCHASE_UNIT}원 단위로만 입력 가능합니다.`);
+      throw new Error(ERROR_MESSAGES.NOT_RIGHT_UNIT(LOTTO.PURCHASE_UNIT));
   }
 
   #calculateAmount(money) {

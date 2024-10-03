@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from "../constants/message.js";
 import { LOTTO } from "../constants/rules.js";
 
 class BonusNumber {
@@ -9,10 +10,10 @@ class BonusNumber {
   }
 
   #validateBonusNumber(number, winningNums) {
-    if (isNaN(number)) throw new Error("[ERROR] 숫자만 입력 가능합니다.");
-    if (winningNums.includes(number)) throw new Error("[ERROR] 중복된 숫자는 입력이 불가합니다.");
+    if (isNaN(number)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
+    if (winningNums.includes(number)) throw new Error(ERROR_MESSAGES.DUPLICATE);
     if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
-      throw new Error(`[ERROR] 로또 번호는 ${LOTTO.MIN_NUM} ~ ${LOTTO.MAX_NUM}사이여야 합니다.`);
+      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
   }
 
   getBonusNumber() {

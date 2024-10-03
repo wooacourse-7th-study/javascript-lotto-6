@@ -1,9 +1,10 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { INPUT_MESSAGES } from "../constants/message.js";
 
 class Input {
   async inputMoney() {
     try {
-      const input = await MissionUtils.Console.readLineAsync("구입금액을 입력해 주세요.\n");
+      const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.PURCHASE_MONEY);
       return input;
     } catch (error) {
       MissionUtils.Console.print(error.message);
@@ -13,7 +14,7 @@ class Input {
 
   async inputWinningNums() {
     try {
-      const input = await MissionUtils.Console.readLineAsync("\n당첨 번호를 입력해 주세요.\n");
+      const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.WINNING_NUM);
       return input.split(",");
     } catch (error) {
       MissionUtils.Console.print(error.message);
@@ -23,7 +24,7 @@ class Input {
 
   async inputBonusNum() {
     try {
-      const input = await MissionUtils.Console.readLineAsync("\n보너스 번호를 입력해 주세요.\n");
+      const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.BONUS_NUM);
       return input;
     } catch (error) {
       MissionUtils.Console.print(error.message);

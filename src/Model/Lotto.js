@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from "../constants/message.js";
 import { LOTTO } from "../constants/rules.js";
 
 class Lotto {
@@ -13,20 +14,18 @@ class Lotto {
 
   #validate(numbers) {
     if (numbers.length !== LOTTO.NUM_COUNT)
-      throw new Error(`[ERROR] 로또 번호는 ${LOTTO.NUM_COUNT}개여야 합니다.`);
+      throw new Error(ERROR_MESSAGES.LOTTO_COUNT(LOTTO.NUM_COUNT));
 
     const setNums = new Set(numbers);
-    if (setNums.size !== numbers.length) throw new Error("[ERROR] 로또 번호는 중복될 수 없습니다.");
+    if (setNums.size !== numbers.length) throw new Error(ERROR_MESSAGES.DUPLICATE);
   }
 
   // TODO: 추가 기능 구현
   #validateEachNum(number) {
-    if (isNaN(number)) throw new Error("[ERROR] 로또 번호는 숫자만 입력 가능합니다.");
-    if (number.trim() === "") throw new Error("[ERROR] 공백은 입력 불가합니다.");
+    if (isNaN(number)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
+    if (number.trim() === "") throw new Error(ERROR_MESSAGES.BLANK);
     if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
-      throw new Error(
-        `[ERROR] 로또 번호는 ${LOTTO.MIN_NUM} ~ ${LOTTO.MAX_NUM} 사이에 있어야 합니다.`
-      );
+      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
   }
 
   getWinningNumbers() {

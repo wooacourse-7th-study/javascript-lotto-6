@@ -1,9 +1,10 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { RANK } from "../constants/rules.js";
+import { OUTPUT_MESSAGES } from "../constants/message.js";
 
 class Output {
   outputTicketAmount(amount) {
-    MissionUtils.Console.print(`\n${amount}개를 구매했습니다.`);
+    MissionUtils.Console.print(OUTPUT_MESSAGES.PURCHASE(amount));
   }
 
   outputTickets(tickets) {
@@ -13,7 +14,7 @@ class Output {
   }
 
   printResult(resultArr) {
-    MissionUtils.Console.print("\n당첨 통계\n---");
+    MissionUtils.Console.print(OUTPUT_MESSAGES.RESULT_STATEMENT);
     for (let rank = 5; rank > 0; rank -= 1) {
       const COUNT = resultArr[rank];
       const RANK_STRING = RANK[rank].STRING;
