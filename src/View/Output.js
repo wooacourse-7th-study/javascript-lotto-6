@@ -9,7 +9,8 @@ class Output {
 
   outputTickets(tickets) {
     for (let i = 0; i < tickets.length; i++) {
-      MissionUtils.Console.print(tickets[i]);
+      const ticketString = tickets[i].join(", ");
+      MissionUtils.Console.print(`[${ticketString}]`);
     }
   }
 
