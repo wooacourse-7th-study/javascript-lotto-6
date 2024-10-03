@@ -68,12 +68,16 @@ class Lotto {
     return userLottoNumbers;
   }
 
-  async getUserInputBonusNumber() {
+  async getUserInputBonusNumber(userLottoNumbers) {
     const userInput = await MissionUtils.Console.readLineAsync(MESSAGES.INPUT_BONUS_NUMBER);
     const bonusNumber = Number(userInput);
 
     if (this.#isLottoNumberValidate(bonusNumber)) {
       throw new Error(MESSAGES.INVALID_LOTTO_NUMBER);
+    }
+
+    if (userLottoNumbers.includes(bonusNumber)) {
+      throw new Error(MESSAGES.DUPLICATE_LOTTO_NUMBER);
     }
 
     return bonusNumber;

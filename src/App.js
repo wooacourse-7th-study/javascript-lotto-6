@@ -16,7 +16,7 @@ class App {
       const userLottoNumbers = await lotto.getUserInputLottoNumber();
 
       // 보너스 번호 입력
-      const bonusNumber = await lotto.getUserInputBonusNumber();
+      const bonusNumber = await lotto.getUserInputBonusNumber(userLottoNumbers);
 
       // 로또 결과 처리, 출력
       const { result, prizeMoney } = lotto.getLottoResult(userLottoNumbers, bonusNumber, lottoNumbersStore);
