@@ -1,9 +1,15 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 class Ticket {
   #amount;
+  #tickets = [];
 
   constructor(money) {
     this.#validMoneyInput(money);
     this.#calculateAmount(money);
+    for (let i = 0; i < this.#amount; i++) {
+      this.#buyOneTicket();
+    }
   }
 
   #validMoneyInput(input) {
@@ -15,8 +21,18 @@ class Ticket {
     this.#amount = Math.floor(money / 1000);
   }
 
+  #buyOneTicket() {
+    const nums = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    nums.sort((a, b) => a - b);
+    this.#tickets.push(nums);
+  }
+
   getAmount() {
     return this.#amount;
+  }
+
+  getTickets() {
+    return this.#tickets;
   }
 }
 

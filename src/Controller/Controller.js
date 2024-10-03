@@ -14,6 +14,7 @@ class Controller {
       const purchaseMoney = await this.input.inputMoney();
       this.ticket = new Ticket(purchaseMoney);
       this.output.outputTicketAmount(this.ticket.getAmount());
+      this.output.outputTickets(this.ticket.getTickets());
     } catch (error) {
       MissionUtils.Console.print(error.message);
       await this.buyLotto();
