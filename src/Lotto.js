@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from "./constants/errorMessage.js";
+import { LOTTO_NUMBER } from "./constants/lottoRule.js";
 class Lotto {
   #numbers;
 
@@ -7,12 +9,27 @@ class Lotto {
   }
 
   #validate(numbers) {
+    if (numbers.some((num) => isNaN(num))) {
+      throw new Error(ERROR_MESSAGE.NOT_A_NUMBER);
+    }
     if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+      throw new Error(ERROR_MESSAGE.NOT_ENOUGH_NUMBERS(LOTTO_NUMBER.LENGTH));
+    }
+    if (new Set(numbers).size !== LOTTO_NUMBER.LENGTH) {
+      throw new Error(ERROR_MESSAGE.INPUT_DUPLICATION);
+    }
+    if (
+      numbers.some((num) => num < LOTTO_NUMBER.MIN || num > LOTTO_NUMBER.MAX)
+    ) {
+      throw new Error(
+        ERROR_MESSAGE.OUT_OF_RANGE(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX)
+      );
     }
   }
 
-  // TODO: 추가 기능 구현
+  get numbers() {
+    return [...this.#numbers];
+  }
 }
 
 export default Lotto;
