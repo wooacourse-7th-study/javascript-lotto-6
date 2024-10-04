@@ -10,6 +10,9 @@ class LottoGame {
 	#winnerNumberArr //당첨 번호 배열
 
 	#bonusNumber //보너스 번호
+
+	#resultLottoArr = [] //최종 로또 맞춘 결과 배열
+
 	async start() {
 		await this.inputMoneyAndLottoAmount()
 		this.randomNumberArr()
@@ -17,6 +20,7 @@ class LottoGame {
 		await this.inputBonus()
 		this.getResultLotto()
 		this.printResultLotto()
+		this.getTotalReturnPrice()
 	}
 
 	//돈 입력 및 로또 구매 수 출력
@@ -94,7 +98,33 @@ class LottoGame {
 			`6개 일치 (2,000,000,000원) - ${this.matchCount('6')}개`,
 		)
 	}
+
+	matchCount(number) {
+		return this.#resultLottoArr.filter(result => result == number).length
 	}
+	getTotalReturnPrice() {
+		let returnPrice = 0
+		for (let number of this.#resultLottoArr) {
+			if (number === '3') {
+				returnPrice += 5000
+			}
+			if (number === '4') {
+				returnPrice += 50000
+			}
+			if (number === '5') {
+				returnPrice += 1500000
+			}
+			if (number === '5B') {
+				returnPrice += 30000000
+			}
+			if (number === '6') {
+				returnPrice += 2000000000
+			}
+		}
+
+		MissionUtils.Console.print(
+			`총 수익률은 ${(returnPrice / (this.#lottoAmount * 1000)) * 100}%입니다.`,
+		)
 	}
 }
 export default LottoGame
