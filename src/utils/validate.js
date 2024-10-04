@@ -1,6 +1,6 @@
 import { MESSAGE } from '../constants/message.js'
 
-class validate {
+class Validate {
 	inputMoney(inputMoney) {
 		this.#isNotNumber(inputMoney)
 		this.#isZeroOrMinus(inputMoney)
@@ -71,4 +71,4 @@ class validate {
 		}
 	}
 }
-export default validate
+export default Validate

@@ -1,8 +1,12 @@
 import { MissionUtils } from '@woowacourse/mission-utils'
 import { MESSAGE } from './constants/message.js'
-import validate from './utils/validate.js'
+import Validate from './utils/validate.js'
 
 class LottoGame {
+	constructor() {
+		this.validate = new Validate()
+	}
+
 	#lottoAmount //로또 개수
 
 	#lottoRandomNumberArr = [] //로또 랜덤값 배열 (이중 배열)
@@ -28,8 +32,7 @@ class LottoGame {
 		const userInputPrice = await MissionUtils.Console.readLineAsync(
 			MESSAGE.INPUT.PRICE_NUMBER,
 		)
-		const Validate = new validate()
-		Validate.inputMoney(userInputPrice)
+		this.validate.inputMoney(userInputPrice)
 		this.#lottoAmount = userInputPrice / 1000
 		MissionUtils.Console.print(`\n${this.#lottoAmount}개를 구매했습니다.`)
 	}
@@ -42,8 +45,7 @@ class LottoGame {
 			this.#lottoRandomNumberArr.push(randomNum)
 			MissionUtils.Console.print(randomNum)
 		}
-		const Validate = new validate()
-		Validate.randomLottoArr(this.#lottoRandomNumberArr)
+		this.validate.randomLottoArr(this.#lottoRandomNumberArr)
 	}
 
 	//로또 번호 입력
@@ -53,8 +55,7 @@ class LottoGame {
 		)
 		this.#winnerNumberArr = userInputWinnerNumber.split(',')
 
-		const Validate = new validate()
-		Validate.inputWinner(this.#winnerNumberArr)
+		this.validate.inputWinner(this.#winnerNumberArr)
 	}
 
 	//보너스 번호 입력
@@ -63,8 +64,7 @@ class LottoGame {
 			MESSAGE.INPUT.BONUS_NUMBER,
 		)
 
-		const Validate = new validate()
-		Validate.inputBonus(this.#bonusNumber)
+		this.validate.inputBonus(this.#bonusNumber)
 	}
 
 	//결과
