@@ -8,10 +8,13 @@ class LottoGame {
 	#lottoRandomNumberArr = [] //로또 랜덤값 배열 (이중 배열)
 
 	#winnerNumberArr //당첨 번호 배열
+
+	#bonusNumber //보너스 번호
 	async start() {
 		await this.inputMoneyAndLottoAmount()
 		this.randomNumberArr()
 		await this.inputWinnerNumber()
+		await this.inputBonus()
 	}
 
 	//돈 입력 및 로또 구매 수 출력
@@ -46,6 +49,14 @@ class LottoGame {
 
 		const Validate = new validate()
 		Validate.inputWinner(this.#winnerNumberArr)
+	}
+
+	//보너스 번호 입력
+	async inputBonus() {
+		this.#bonusNumber = await MissionUtils.Console.readLineAsync(
+			MESSAGE.INPUT.BONUS_NUMBER,
+		)
+
 	}
 	}
 	}
