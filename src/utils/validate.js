@@ -11,6 +11,10 @@ class validate {
 		this.#isNotOverLap(splitNumber)
 		this.#isNotNumberArr(splitNumber)
 	}
+	inputBonus(inputBonusNumber) {
+		this.#isNotNumber(inputBonusNumber)
+		this.#isLottoRange(inputBonusNumber)
+	}
 	randomLottoArr(randomNumber) {
 		this.#isLottoOverlap(randomNumber)
 		this.#isNotLengthSixLotto(randomNumber)
@@ -54,6 +58,11 @@ class validate {
 		const set = new Set(splitNumber)
 		if (splitNumber.length !== set.size) {
 			throw new Error(MESSAGE.ERROR.ISOVERLAP_CARNAME)
+		}
+	}
+	#isLottoRange(inputBonusNumber) {
+		if (inputBonusNumber < 1 && inputBonusNumber > 45) {
+			throw new Error(MESSAGE.ERROR.NOT_NUMBER)
 		}
 	}
 	#isLottoOverlap(randomNumber) {

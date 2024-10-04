@@ -57,6 +57,8 @@ class LottoGame {
 			MESSAGE.INPUT.BONUS_NUMBER,
 		)
 
+		const Validate = new validate()
+		Validate.inputBonus(this.#bonusNumber)
 	}
 	}
 	}

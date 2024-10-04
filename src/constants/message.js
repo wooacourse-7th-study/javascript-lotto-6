@@ -2,6 +2,7 @@ export const MESSAGE = {
 	INPUT: {
 		PRICE_NUMBER: '구입금액을 입력해 주세요.\n',
 		WINNER_NUMBER: '\n당첨 번호를 입력해 주세요.\n',
+		BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
 	},
 	ERROR: {
 		NOT_NUMBER: '[ERROR] 자연수만 입력 가능합니다.',
