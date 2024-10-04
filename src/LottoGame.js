@@ -74,7 +74,7 @@ class LottoGame {
 	//결과
 	getResultLotto() {
 		for (let random of this.#lottoRandomNumberArr) {
-			let count = random.filter(number =>
+			const count = random.filter(number =>
 				this.#winnerNumberArr.includes(String(number)),
 			).length
 			if (count === 5 && random.includes(Number(this.#bonusNumber))) {
@@ -104,7 +104,7 @@ class LottoGame {
 	}
 
 	matchCount(number) {
-		return this.#resultLottoArr.filter(result => result == number).length
+		return this.#resultLottoArr.filter(result => result === number).length
 	}
 	getTotalReturnPrice() {
 		let returnPrice = 0
