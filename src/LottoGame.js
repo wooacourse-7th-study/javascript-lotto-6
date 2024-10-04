@@ -40,10 +40,14 @@ class LottoGame {
 	//랜덤한 값 배열로
 	randomNumberArr() {
 		for (let i = 0; i < this.#lottoAmount; i++) {
-			const randomNum = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6)
-			randomNum.sort((a, b) => a - b)
-			this.#lottoRandomNumberArr.push(randomNum)
-			MissionUtils.Console.print(randomNum)
+			const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+				1,
+				45,
+				6,
+			)
+			randomNumbers.sort((a, b) => a - b)
+			this.#lottoRandomNumberArr.push(randomNumbers)
+			MissionUtils.Console.print(randomNumbers)
 		}
 		this.validate.randomLottoArr(this.#lottoRandomNumberArr)
 	}
