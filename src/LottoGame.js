@@ -15,6 +15,7 @@ class LottoGame {
 		this.randomNumberArr()
 		await this.inputWinnerNumber()
 		await this.inputBonus()
+		this.getResultLotto()
 	}
 
 	//돈 입력 및 로또 구매 수 출력
@@ -59,6 +60,21 @@ class LottoGame {
 
 		const Validate = new validate()
 		Validate.inputBonus(this.#bonusNumber)
+	}
+
+	//결과
+	getResultLotto() {
+		for (let random of this.#lottoRandomNumberArr) {
+			let count = random.filter(it =>
+				this.#winnerNumberArr.includes(String(it)),
+			).length
+			if (count === 5 && random.includes(Number(this.#bonusNumber))) {
+				this.#resultLottoArr.push('5B')
+			}
+			if (count >= 3 && count <= 6 && count !== 5) {
+				this.#resultLottoArr.push(String(count))
+			}
+		}
 	}
 	}
 	}
