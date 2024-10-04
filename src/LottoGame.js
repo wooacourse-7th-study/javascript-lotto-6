@@ -26,6 +26,9 @@ class LottoGame {
 			this.#lottoRandomNumberArr.push(randomNum)
 			MissionUtils.Console.print(randomNum)
 		}
+		const Validate = new validate()
+		Validate.randomLottoArr(this.#lottoRandomNumberArr)
+	}
 	}
 	}
 }
