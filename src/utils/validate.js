@@ -6,6 +6,11 @@ class validate {
 		this.#isZeroOrminus(inputMoney)
 		this.#isNotDivision(inputMoney)
 	}
+	inputWinner(splitNumber) {
+		this.#isNotLengthSix(splitNumber)
+		this.#isNotOverLap(splitNumber)
+		this.#isNotNumberArr(splitNumber)
+	}
 	randomLottoArr(randomNumber) {
 		this.#isLottoOverlap(randomNumber)
 		this.#isNotLengthSixLotto(randomNumber)
@@ -14,6 +19,13 @@ class validate {
 	#isNotNumber(inputMoney) {
 		if (isNaN(inputMoney)) {
 			throw new Error(MESSAGE.ERROR.NOT_NUMBER)
+		}
+	}
+	#isNotNumberArr(splitNumber) {
+		for (let number of splitNumber) {
+			if (number.trim() === '') {
+				throw new Error(MESSAGE.ERROR.NOT_VALUE)
+			}
 		}
 	}
 	#isZeroOrminus(inputMoney) {
@@ -27,9 +39,21 @@ class validate {
 			throw new Error(MESSAGE.ERROR.NOT_DIVISION)
 		}
 	}
+
+	#isNotLengthSix(splitNumber) {
+		if (splitNumber.length !== 6) {
+			throw new Error(MESSAGE.ERROR.NOT_VALUE)
+		}
+	}
 	#isNotLengthSixLotto(randomNumber) {
 		for (let number of randomNumber) {
 			this.#isNotLengthSix(number)
+		}
+	}
+	#isNotOverLap(splitNumber) {
+		const set = new Set(splitNumber)
+		if (splitNumber.length !== set.size) {
+			throw new Error(MESSAGE.ERROR.ISOVERLAP_CARNAME)
 		}
 	}
 	#isLottoOverlap(randomNumber) {

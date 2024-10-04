@@ -1,3 +1,7 @@
+import { MissionUtils } from '@woowacourse/mission-utils'
+import { MESSAGE } from './constants/message.js'
+import validate from './utils/validate.js'
+
 class LottoGame {
 	#lottoAmount //로또 개수
 
@@ -40,6 +44,9 @@ class LottoGame {
 		)
 		this.#winnerNumberArr = userInputWinnerNumber.split(',')
 
+		const Validate = new validate()
+		Validate.inputWinner(this.#winnerNumberArr)
+	}
 	}
 	}
 	}
