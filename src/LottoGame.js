@@ -74,8 +74,8 @@ class LottoGame {
 	//결과
 	getResultLotto() {
 		for (let random of this.#lottoRandomNumberArr) {
-			let count = random.filter(it =>
-				this.#winnerNumberArr.includes(String(it)),
+			let count = random.filter(number =>
+				this.#winnerNumberArr.includes(String(number)),
 			).length
 			if (count === 5 && random.includes(Number(this.#bonusNumber))) {
 				this.#resultLottoArr.push('5B')
