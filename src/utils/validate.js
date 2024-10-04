@@ -3,7 +3,7 @@ import { MESSAGE } from '../constants/message.js'
 class validate {
 	inputMoney(inputMoney) {
 		this.#isNotNumber(inputMoney)
-		this.#isZeroOrminus(inputMoney)
+		this.#isZeroOrMinus(inputMoney)
 		this.#isNotDivision(inputMoney)
 	}
 	inputWinner(splitNumber) {
@@ -32,8 +32,8 @@ class validate {
 			}
 		}
 	}
-	#isZeroOrminus(inputMoney) {
-		if (Number(inputMoney) === 0 || Number(inputMoney) < 1) {
+	#isZeroOrMinus(inputMoney) {
+		if (Number(inputMoney) < 1) {
 			throw new Error(MESSAGE.ERROR.NOT_NUMBER)
 		}
 	}
