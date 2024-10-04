@@ -9,6 +9,8 @@ class LottoGame {
 		const userInputPrice = await MissionUtils.Console.readLineAsync(
 			MESSAGE.INPUT.PRICE_NUMBER,
 		)
+		const Validate = new validate()
+		Validate.inputMoney(userInputPrice)
 		this.#lottoAmount = userInputPrice / 1000
 		MissionUtils.Console.print(`\n${this.#lottoAmount}개를 구매했습니다.`)
 	}
