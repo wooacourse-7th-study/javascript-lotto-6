@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "../src/constants/message";
-import { LOTTO } from "../src/constants/rules";
+import { LOTTO_RULES } from "../src/constants/rules";
 import Ticket from "../src/Model/Ticket";
 
 describe("티켓 클래스 테스트", () => {
@@ -12,7 +12,7 @@ describe("티켓 클래스 테스트", () => {
   test("구입 금액이 단위에 나눠 떨어져야한다.", () => {
     expect(() => {
       new Ticket("500");
-    }).toThrow(ERROR_MESSAGES.NOT_RIGHT_UNIT(LOTTO.PURCHASE_UNIT));
+    }).toThrow(ERROR_MESSAGES.NOT_RIGHT_UNIT(LOTTO_RULES.PURCHASE_UNIT));
   });
 
   const AMOUNT_TEST_CASE = [

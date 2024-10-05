@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "../constants/message.js";
-import { LOTTO } from "../constants/rules.js";
+import { LOTTO_RULES } from "../constants/rules.js";
 
 /** 로또 당첨 번호를 관리하는 Model입니다. */
 class Lotto {
@@ -19,8 +19,8 @@ class Lotto {
 
   /** 당첨 번호 배열의 유효성 검사 로직입니다. */
   #validate(numbers) {
-    if (numbers.length !== LOTTO.NUM_COUNT)
-      throw new Error(ERROR_MESSAGES.LOTTO_COUNT(LOTTO.NUM_COUNT));
+    if (numbers.length !== LOTTO_RULES.NUM_COUNT)
+      throw new Error(ERROR_MESSAGES.LOTTO_COUNT(LOTTO_RULES.NUM_COUNT));
 
     const setNums = new Set(numbers);
     if (setNums.size !== numbers.length) throw new Error(ERROR_MESSAGES.DUPLICATE);
@@ -30,8 +30,8 @@ class Lotto {
   #validateEachNum(number) {
     if (isNaN(number)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
     if (number.trim() === "") throw new Error(ERROR_MESSAGES.BLANK);
-    if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
-      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+    if (number < LOTTO_RULES.MIN_NUM || number > LOTTO_RULES.MAX_NUM)
+      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO_RULES.MIN_NUM, LOTTO_RULES.MAX_NUM));
   }
 
   /**

@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "../src/constants/message.js";
-import { LOTTO } from "../src/constants/rules.js";
+import { LOTTO_RULES } from "../src/constants/rules.js";
 import Lotto from "../src/Model/Lotto.js";
 
 describe("로또 클래스 테스트", () => {
@@ -34,7 +34,7 @@ describe("로또 클래스 테스트", () => {
     (numbers) => {
       expect(() => {
         new Lotto(numbers);
-      }).toThrow(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+      }).toThrow(ERROR_MESSAGES.NUM_RANGE(LOTTO_RULES.MIN_NUM, LOTTO_RULES.MAX_NUM));
     }
   );
 });

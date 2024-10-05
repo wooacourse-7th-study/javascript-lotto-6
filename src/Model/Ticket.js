@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { LOTTO } from "../constants/rules.js";
+import { LOTTO_RULES } from "../constants/rules.js";
 import { ERROR_MESSAGES } from "../constants/message.js";
 
 /** 이용자가 구매한 티켓을 관리하는 Model입니다. */
@@ -22,21 +22,21 @@ class Ticket {
   /** 입력받은 구매 금액의 유효성 검사 로직입니다. */
   #validMoneyInput(input) {
     if (isNaN(input)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
-    if (input % LOTTO.PURCHASE_UNIT !== 0)
-      throw new Error(ERROR_MESSAGES.NOT_RIGHT_UNIT(LOTTO.PURCHASE_UNIT));
+    if (input % LOTTO_RULES.PURCHASE_UNIT !== 0)
+      throw new Error(ERROR_MESSAGES.NOT_RIGHT_UNIT(LOTTO_RULES.PURCHASE_UNIT));
   }
 
   /** 구매 금액으로 티켓 개수를 구합니다. */
   #calculateAmount(money) {
-    this.#amount = Math.floor(money / LOTTO.TICKET_PRICE);
+    this.#amount = Math.floor(money / LOTTO_RULES.TICKET_PRICE);
   }
 
   /** 한개의 로또 티켓을 구매했을 때의 로또 번호를 구합니다. */
   #buyOneTicket() {
     const nums = MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO.MIN_NUM,
-      LOTTO.MAX_NUM,
-      LOTTO.NUM_COUNT
+      LOTTO_RULES.MIN_NUM,
+      LOTTO_RULES.MAX_NUM,
+      LOTTO_RULES.NUM_COUNT
     );
     nums.sort((a, b) => a - b);
     this.#tickets.push(nums);

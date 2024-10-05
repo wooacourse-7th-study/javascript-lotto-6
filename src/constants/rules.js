@@ -1,5 +1,5 @@
 /** 로또 게임의 룰과 관련된 상수들입니다. */
-export const LOTTO = Object.freeze({
+export const LOTTO_RULES = Object.freeze({
   NUM_COUNT: 6,
   MIN_NUM: 1,
   MAX_NUM: 45,

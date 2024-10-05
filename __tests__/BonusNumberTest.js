@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "../src/constants/message";
-import { LOTTO } from "../src/constants/rules";
+import { LOTTO_RULES } from "../src/constants/rules";
 import BonusNumber from "../src/Model/BonusNumber";
 
 describe("보너스 번호 클래스 테스트", () => {
@@ -28,7 +28,7 @@ describe("보너스 번호 클래스 테스트", () => {
     (numbers, winningNums) => {
       expect(() => {
         new BonusNumber(numbers, winningNums);
-      }).toThrow(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+      }).toThrow(ERROR_MESSAGES.NUM_RANGE(LOTTO_RULES.MIN_NUM, LOTTO_RULES.MAX_NUM));
     }
   );
 });

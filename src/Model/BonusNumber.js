@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "../constants/message.js";
-import { LOTTO } from "../constants/rules.js";
+import { LOTTO_RULES } from "../constants/rules.js";
 
 /** 로또 보너스 번호를 관리하는 Model입니다. */
 class BonusNumber {
@@ -19,8 +19,8 @@ class BonusNumber {
   #validateBonusNumber(number, winningNums) {
     if (isNaN(number)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
     if (winningNums.includes(number)) throw new Error(ERROR_MESSAGES.DUPLICATE);
-    if (number < LOTTO.MIN_NUM || number > LOTTO.MAX_NUM)
-      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO.MIN_NUM, LOTTO.MAX_NUM));
+    if (number < LOTTO_RULES.MIN_NUM || number > LOTTO_RULES.MAX_NUM)
+      throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO_RULES.MIN_NUM, LOTTO_RULES.MAX_NUM));
   }
 
   /**
