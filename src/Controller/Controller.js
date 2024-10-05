@@ -26,16 +26,25 @@ class Controller {
     }
   }
 
-  /** 당첨 번호와 보너스 번호를 입력받습니다. */
+  /** 당첨 번호를 입력받습니다. */
   async inputWinningNum() {
     try {
       const winningNums = await this.input.inputWinningNums();
       this.lotto = new Lotto(winningNums);
+    } catch (error) {
+      MissionUtils.Console.print(error.message);
+      await this.inputWinningNum();
+    }
+  }
+
+  /** 보너스 번호를 입력받습니다. */
+  async inputBonusNum() {
+    try {
       const bonusNum = await this.input.inputBonusNum();
       this.bonusNumber = new BonusNumber(bonusNum, this.lotto.getWinningNumbers());
     } catch (error) {
       MissionUtils.Console.print(error.message);
-      await this.inputWinningNum();
+      await this.inputBonusNum();
     }
   }
 
