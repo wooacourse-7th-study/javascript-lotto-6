@@ -6,8 +6,7 @@ class Input {
   /** 로또 총 구매 금액을 입력받습니다. */
   async inputMoney() {
     try {
-      const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.PURCHASE_MONEY);
-      return input;
+      return await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.PURCHASE_MONEY);
     } catch (error) {
       MissionUtils.Console.print(error.message);
       this.inputMoney();
@@ -28,8 +27,7 @@ class Input {
   /** 로또 보너스 번호를 입력받습니다. */
   async inputBonusNum() {
     try {
-      const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.BONUS_NUM);
-      return input;
+      return await MissionUtils.Console.readLineAsync(INPUT_MESSAGES.BONUS_NUM);
     } catch (error) {
       MissionUtils.Console.print(error.message);
       this.inputWinningNums();
