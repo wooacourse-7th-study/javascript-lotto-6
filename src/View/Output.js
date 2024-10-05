@@ -20,7 +20,7 @@ class Output {
   /** 당첨 통계와 수익률을 출력합니다. */
   printResult(resultArr, profitRate) {
     MissionUtils.Console.print(OUTPUT_MESSAGES.RESULT_STATEMENT);
-    for (let rank = 5; rank > 0; rank -= 1) {
+    for (let rank = 5; rank > 0; rank--) {
       const COUNT = resultArr[rank];
       const RANK_STRING = RANK[rank].STRING;
       MissionUtils.Console.print(RANK_STRING + " - " + COUNT + "개");
