@@ -39,48 +39,66 @@ class Lotto {
 
   // 사용자 입력
   async getUserInputLottoPrice() {
-    const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_LOTTO_PRICE);
-    const price = Number(userInput);
+    while (true) {
+      try {
+        const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_LOTTO_PRICE);
+        const price = Number(userInput);
 
-    if (this.#isLottoPriceValidate(price)) {
-      throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_PRICE);
+        if (this.#isLottoPriceValidate(price)) {
+          throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_PRICE);
+        }
+
+        return price;
+      } catch (error) {
+        MissionUtils.Console.print(error.message);
+      }
     }
-
-    return price;
   }
 
   async getUserInputLottoNumber() {
-    const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_LOTTO_NUMBER);
-    const userLottoNumbers = userInput.split(",").map((number) => Number(number));
+    while (true) {
+      try {
+        const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_LOTTO_NUMBER);
+        const userLottoNumbers = userInput.split(",").map((number) => Number(number));
 
-    if (this.#isLottoNumberLengthValidate(userLottoNumbers)) {
-      throw new Error(LOTTO_MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
+        if (this.#isLottoNumberLengthValidate(userLottoNumbers)) {
+          throw new Error(LOTTO_MESSAGES.SIX_LENGTH_LOTTO_NUMBER);
+        }
+
+        if (userLottoNumbers.some((number) => this.#isLottoNumberValidate(number))) {
+          throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
+        }
+
+        if (this.#isDuplicateLottoNumberValidate(userLottoNumbers)) {
+          throw new Error(LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER);
+        }
+
+        return userLottoNumbers;
+      } catch (error) {
+        MissionUtils.Console.print(error.message);
+      }
     }
-
-    if (userLottoNumbers.some((number) => this.#isLottoNumberValidate(number))) {
-      throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
-    }
-
-    if (this.#isDuplicateLottoNumberValidate(userLottoNumbers)) {
-      throw new Error(LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER);
-    }
-
-    return userLottoNumbers;
   }
 
   async getUserInputBonusNumber(userLottoNumbers) {
-    const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_BONUS_NUMBER);
-    const bonusNumber = Number(userInput);
+    while (true) {
+      try {
+        const userInput = await MissionUtils.Console.readLineAsync(LOTTO_MESSAGES.INPUT_BONUS_NUMBER);
+        const bonusNumber = Number(userInput);
 
-    if (this.#isLottoNumberValidate(bonusNumber)) {
-      throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
+        if (this.#isLottoNumberValidate(bonusNumber)) {
+          throw new Error(LOTTO_MESSAGES.INVALID_LOTTO_NUMBER);
+        }
+
+        if (userLottoNumbers.includes(bonusNumber)) {
+          throw new Error(LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER);
+        }
+
+        return bonusNumber;
+      } catch (error) {
+        MissionUtils.Console.print(error.message);
+      }
     }
-
-    if (userLottoNumbers.includes(bonusNumber)) {
-      throw new Error(LOTTO_MESSAGES.DUPLICATE_LOTTO_NUMBER);
-    }
-
-    return bonusNumber;
   }
 
   // 로또 번호 생성, 리턴, 출력
