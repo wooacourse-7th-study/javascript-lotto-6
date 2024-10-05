@@ -14,19 +14,11 @@ class Lotto {
 
   // 유효성 검사
   #isLottoPriceValidate(price) {
-    if (price % LOTTO_NUMBER.DIVISION_PRICE === 0) {
-      return false;
-    }
-
-    return true;
+    return price % LOTTO_NUMBER.DIVISION_PRICE !== 0;
   }
 
   #isLottoNumberLengthValidate(numbers) {
-    if (numbers.length === LOTTO_NUMBER.LENGTH) {
-      return false;
-    }
-
-    return true;
+    return numbers.length !== LOTTO_NUMBER.LENGTH;
   }
 
   #isLottoNumberValidate(number) {
