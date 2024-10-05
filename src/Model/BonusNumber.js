@@ -18,7 +18,7 @@ class BonusNumber {
   /** 보너스 번호의 유효성 검사 로직입니다. */
   #validateBonusNumber(number, winningNums) {
     if (isNaN(number)) throw new Error(ERROR_MESSAGES.ONLY_NUMBER);
-    if (winningNums.includes(number)) throw new Error(ERROR_MESSAGES.DUPLICATE);
+    if (winningNums.includes(Number(number))) throw new Error(ERROR_MESSAGES.DUPLICATE);
     if (number < LOTTO_RULES.MIN_NUM || number > LOTTO_RULES.MAX_NUM)
       throw new Error(ERROR_MESSAGES.NUM_RANGE(LOTTO_RULES.MIN_NUM, LOTTO_RULES.MAX_NUM));
   }
