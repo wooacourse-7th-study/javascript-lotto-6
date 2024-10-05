@@ -8,7 +8,6 @@ export const LOTTO_MESSAGES = Object.freeze({
   INPUT_LOTTO_NUMBER: "\n당첨 번호를 입력해 주세요.\n",
   INPUT_BONUS_NUMBER: "\n보너스 번호을 입력해 주세요.\n",
   RESULT_LOTTO: "\n당첨 통계\n---",
-  REVENUE_RATE: (revenueRate) => `총 수익률은 ${revenueRate}%입니다.`,
 });
 
 export const LOTTO_NUMBER = Object.freeze({

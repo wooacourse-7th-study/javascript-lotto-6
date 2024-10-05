@@ -145,7 +145,8 @@ class Lotto {
 
   #getRevenueRate(price, prizeMoney) {
     const rate = ((prizeMoney - price) / price) * 100;
-    return parseFloat(rate.toFixed(1)).toLocaleString();
+    const revenueRate = parseFloat(rate.toFixed(1)).toLocaleString();
+    return `총 수익률은 ${revenueRate}%입니다.`;
   }
 
   printResult(result, price, prizeMoney) {
@@ -160,8 +161,7 @@ class Lotto {
       MissionUtils.Console.print(`${key}개 일치 (${LOTTO_PRIZE_MONEY[key].toLocaleString()}원) - ${count}개`);
     }
 
-    const revenueRate = this.#getRevenueRate(price, prizeMoney);
-    MissionUtils.Console.print(LOTTO_MESSAGES.REVENUE_RATE(revenueRate));
+    MissionUtils.Console.print(this.#getRevenueRate(price, prizeMoney));
   }
 }
 
