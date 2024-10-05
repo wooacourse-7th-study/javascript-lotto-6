@@ -103,7 +103,11 @@ class Lotto {
 
   // 로또 번호 생성, 리턴, 출력
   #generateLottoNumbers() {
-    const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(LOTTO_NUMBER.MIN, LOTTO_NUMBER.MAX, 6);
+    const lottoNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO_NUMBER.MIN,
+      LOTTO_NUMBER.MAX,
+      LOTTO_NUMBER.LENGTH
+    );
     return [...lottoNumbers].sort((a, b) => a - b);
   }
 
