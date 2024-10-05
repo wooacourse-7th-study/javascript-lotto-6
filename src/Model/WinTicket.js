@@ -13,7 +13,7 @@ class WinTicket {
    * @param {number} purchaseMoney
    */
   constructor(tickets, winningNums, bonusNum) {
-    for (let ticket of tickets) {
+    for (const ticket of tickets) {
       const rank = this.#calculateMatch(ticket, winningNums, bonusNum);
       if (rank) this.#userRank[rank]++;
     }

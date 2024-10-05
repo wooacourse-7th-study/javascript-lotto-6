@@ -11,7 +11,7 @@ class Lotto {
    */
   constructor(numbers) {
     this.#validate(numbers);
-    for (let number of numbers) {
+    for (const number of numbers) {
       this.#validateEachNum(number);
     }
     this.#numbers = numbers;
