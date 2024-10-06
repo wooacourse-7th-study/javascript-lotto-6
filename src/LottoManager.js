@@ -67,17 +67,13 @@ class LottoManager {
     return numbers.filter((num) => winningNumbers.includes(num)).length;
   }
 
-  calculateTotalPrize(result) {
-    return (
+  calculateTotalPrize(result, purchaseAmount) {
+    var totalPrize =
       result[3] * LOTTO_PRIZE.FIFTH +
       result[4] * LOTTO_PRIZE.FOURTH +
       result[5] * LOTTO_PRIZE.THIRD +
       result[5.5] * LOTTO_PRIZE.SECOND +
-      result[6] * LOTTO_PRIZE.FIRST
-    );
-  }
-
-  calculateReturnRate(totalPrize, purchaseAmount) {
+      result[6] * LOTTO_PRIZE.FIRST;
     return ((totalPrize / purchaseAmount) * 100).toFixed(1);
   }
 }

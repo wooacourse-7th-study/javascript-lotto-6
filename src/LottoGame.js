@@ -79,9 +79,8 @@ class LottoGame {
     );
     Console.print(PRINT_MESSAGE.LOTTO_WINNER(6, LOTTO_PRIZE.FIRST, result[6]));
 
-    const totalPrize = this.lottoManager.calculateTotalPrize(result);
-    const returnRate = this.lottoManager.calculateReturnRate(
-      totalPrize,
+    const returnRate = this.lottoManager.calculateTotalPrize(
+      result,
       purchaseAmount
     );
     Console.print(PRINT_MESSAGE.RATE_OF_RETURN(returnRate));
