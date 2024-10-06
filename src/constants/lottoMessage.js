@@ -11,5 +11,5 @@ export const PRINT_MESSAGE = Object.freeze({
     `${matchCount}개 일치${
       isBonus ? ", 보너스 볼 일치" : ""
     } (${prize.toLocaleString()}원) - ${count}개\n`,
-  RATE_OF_RETURN: (rate) => `총 수익률은 ${rate}%입니다.\n`,
+  RATE_OF_RETURN: (rate) => `총 수익률은 ${rate.toLocaleString()}%입니다.\n`,
 });
