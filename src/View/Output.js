@@ -25,7 +25,7 @@ class Output {
       const RANK_STRING = RANK[rank].STRING;
       MissionUtils.Console.print(RANK_STRING + " - " + COUNT + "개");
     }
-    MissionUtils.Console.print(OUTPUT_MESSAGES.PROFIT_RATE(profitRate));
+    MissionUtils.Console.print(OUTPUT_MESSAGES.PROFIT_RATE(profitRate.toLocaleString()));
   }
 }
 
