@@ -24,10 +24,16 @@ class WinTicket {
   /** 당첨 통계를 계산합니다. */
   #calculateMatch(ticket, winningNums, bonusNum) {
     const matchNums = ticket.filter((num) => winningNums.includes(num));
-    if (matchNums.length < 3) return;
-    else if (matchNums.length === 6) return 1;
-    else if (matchNums.length === 5 && ticket.includes(bonusNum)) return 2;
-    else return 8 - matchNums.length;
+    const isBonusMatch = ticket.includes(bonusNum);
+    return this.#getRank(matchNums.length, isBonusMatch);
+  }
+
+  /** 당첨 개수와 보너스 번호 맞춤 여부에 따라 등수를 return합니다. */
+  #getRank(match, isBonusMatch) {
+    if (match < 3) return;
+    if (match === 6) return 1;
+    if (match === 5 && isBonusMatch) return 2;
+    return 8 - match; // 3개 맞음 => 5등, 4개 맞음 => 4등
   }
 
   /** 수익률을 계산합니다. */
