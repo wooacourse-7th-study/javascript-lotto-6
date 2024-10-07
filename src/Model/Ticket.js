@@ -14,9 +14,7 @@ class Ticket {
   constructor(money) {
     this.#validMoneyInput(money);
     this.#calculateAmount(money);
-    for (let i = 0; i < this.#amount; i++) {
-      this.#buyOneTicket();
-    }
+    this.#buyTickets();
   }
 
   /** 입력받은 구매 금액의 유효성 검사 로직입니다. */
@@ -32,14 +30,16 @@ class Ticket {
   }
 
   /** 한개의 로또 티켓을 구매했을 때의 로또 번호를 구합니다. */
-  #buyOneTicket() {
-    const nums = MissionUtils.Random.pickUniqueNumbersInRange(
-      LOTTO_RULES.MIN_NUM,
-      LOTTO_RULES.MAX_NUM,
-      LOTTO_RULES.NUM_COUNT
-    );
-    nums.sort((a, b) => a - b);
-    this.#tickets.push(nums);
+  #buyTickets() {
+    for (let i = 0; i < this.#amount; i++) {
+      const nums = MissionUtils.Random.pickUniqueNumbersInRange(
+        LOTTO_RULES.MIN_NUM,
+        LOTTO_RULES.MAX_NUM,
+        LOTTO_RULES.NUM_COUNT
+      );
+      nums.sort((a, b) => a - b);
+      this.#tickets.push(nums);
+    }
   }
 
   /**
