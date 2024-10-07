@@ -9,7 +9,10 @@ describe("보너스 번호 클래스 테스트", () => {
     }).toThrow(ERROR_MESSAGES.ONLY_NUMBER);
   });
 
-  const BONUS_DUPLICATE_CASE = [["1", [1, 2, 3, 4, 5, 6]]];
+  const BONUS_DUPLICATE_CASE = [
+    ["1", [1, 2, 3, 4, 5, 6]],
+    ["30", [1, 2, 3, 4, 30, 6]],
+  ];
   test.each(BONUS_DUPLICATE_CASE)(
     "보너스 번호는 기존의 번호와 중복되면 안된다.",
     (input, winningNums) => {
